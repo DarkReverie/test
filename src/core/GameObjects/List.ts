@@ -10,16 +10,16 @@ export class List {
   public helperStepOne: boolean = false;
   public helperStepTwo: boolean = false;
   public helperStart: boolean = false;
-  private shopIcon: Sprite | undefined; // Add a shop icon reference
-  private listContainer: Container; // Separate container for the list
+  private shopIcon: Sprite | undefined; 
+  private listContainer: Container; 
   private selectedBG: any
 
-  private isListVisible: boolean = false; // Track list visibility
+  private isListVisible: boolean = false;
 
   constructor() {
     this.container = new Container();
-    this.listContainer = new Container(); // Create a separate container for the list
-    this.container.addChild(this.listContainer); // Add the list container to the main container
+    this.listContainer = new Container();
+    this.container.addChild(this.listContainer);
 
     this.initList();
     this.initShopIcon();
@@ -27,10 +27,10 @@ export class List {
   }
 
   private initShopIcon(): void {
-    const shopTexture = Assets.get(LIST.texOpen); // Use the shop icon texture
+    const shopTexture = Assets.get(LIST.texOpen);
     this.shopIcon = new Sprite(shopTexture);
     this.shopIcon.anchor.set(0.5);
-    this.shopIcon.x = LIST.x + 200; // Position the shop icon
+    this.shopIcon.x = LIST.x + 200;
     this.shopIcon.y = LIST.y;
     this.shopIcon.width = 100;
     this.shopIcon.height = 100;
@@ -44,7 +44,7 @@ export class List {
         this.helperStepOne = true;
       }
       this.toggleListVisibility();
-      this.toggleShopTexture(); // Toggle shop texture
+      this.toggleShopTexture();
     });
 
     this.container.addChild(this.shopIcon);
@@ -57,14 +57,14 @@ export class List {
   private toggleShopTexture(): void {
     if (this.shopIcon) {
       const newTexture = this.isListVisible ? Assets.get(LIST.texClose) : Assets.get(LIST.texOpen);
-      this.shopIcon.texture = newTexture; // Change the texture of the shop icon
-        gsap.to(this.shopIcon.scale, {
+      this.shopIcon.texture = newTexture;
+      gsap.to(this.shopIcon.scale, {
         x: this.shopIcon.scale.x + 0.05,
         y: this.shopIcon.scale.y + 0.05,
         duration: 0.1,
         yoyo: true,
         repeat: 1,
-        ease: 'elastic.out(1, 0.3)', // Elastic easing for bounce effect
+        ease: 'elastic.out(1, 0.3)',
       });
     }
   }
@@ -86,35 +86,35 @@ private createSelectList(): void {
   for (let i = 0; i < listItems.length; i++) {
     let texture: Texture;
     try {
-      texture = Assets.get(listIDs[i].split('_')[0]); // Get texture based on cleaned ID
+      texture = Assets.get(listIDs[i].split('_')[0]);
     } catch {
-      texture = Texture.WHITE; // Fallback texture
+      texture = Texture.WHITE;
     }
 
     const background = new Graphics();
-    background.beginFill(0x000000, 0.6); // Black color
-    background.drawRoundedRect(-buttonWidth / 2, -buttonHeight / 2, buttonWidth, buttonHeight, 10); // Draw rectangle
+    background.beginFill(0x000000, 0.6);
+    background.drawRoundedRect(-buttonWidth / 2, -buttonHeight / 2, buttonWidth, buttonHeight, 10);
     background.endFill();
-    background.x = centerX + (i % 2) * spacingX - spacingX / 2; // Position background in two columns
-    background.y = centerY + Math.floor(i / 2) * (buttonHeight + spacingY); // Position background vertically
+    background.x = centerX + (i % 2) * spacingX - spacingX / 2;
+    background.y = centerY + Math.floor(i / 2) * (buttonHeight + spacingY);
 
     const btn = new Sprite(texture);
-    btn.width = btn.height = 60; // Set button size
+    btn.width = btn.height = 60;
     btn.anchor.set(0.5);
-    btn.x = background.x; // Align button with background
-    btn.y = background.y; // Align button with background
+    btn.x = background.x;
+    btn.y = background.y;
 
     btn.eventMode = 'static';
     btn.cursor = 'pointer';
 
     const label = new Text(listItems[i], new TextStyle(LIST.itemStyle));
-    // console.log(LIST.itemStyle)
+    label.scale.set(0.8);
     label.anchor.set(0.5);
     label.x = btn.x;
-    label.y = btn.y + 35; // Position label below the button
+    label.y = btn.y + 35;
     const buttonContainer = new Container()
     buttonContainer.addChild(background, btn, label)
-    this.listContainer.addChild(buttonContainer); // Add button container to the list container
+    this.listContainer.addChild(buttonContainer);
 
     btn.on('pointerdown', () => {
       playSound('sound_click');
