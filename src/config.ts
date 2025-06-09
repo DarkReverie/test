@@ -157,64 +157,10 @@ export const TWEENS = {
 };
 
 export const DIRECTIONAL_LIGHT_PRESETS = {
-  day: {
-    color: 0xffffff,
-    intensity: 6,
-    position: { x: 50, y: 60, z: 50 },
-    shadow: {
-      camera: {
-        left: -50,
-        right: 50,
-        top: 50,
-        bottom: -50,
-        near: 0.0,
-        far: 1000,
-      },
-      bias: -0.0004,
-      normalBias: 0.005,
-      mapSize: { x: 4096, y: 4096 },
-    },
-  },
-  night: {
-    color: 0x6666ff,
-    intensity: 1,
-    position: { x: 10, y: 30, z: 10 },
-    shadow: {
-      camera: {
-        left: -30,
-        right: 30,
-        top: 30,
-        bottom: -30,
-        near: 50,
-        far: 100,
-      },
-      bias: -0.0002,
-      normalBias: 0.005,
-      mapSize: { x: 2048, y: 2048 },
-    },
-  },
   morning: {
     color: 0xffcc99,
     intensity: 6,
     position: { x: -40, y: 80, z: -60 },
-    shadow: {
-      camera: {
-        left: -40,
-        right: 40,
-        top: 40,
-        bottom: -40,
-        near: 1,
-        far: 150,
-      },
-      bias: -0.0003,
-      normalBias: 0.007,
-      mapSize: { x: 2048, y: 2048 },
-    },
-  },
-  dusk: {
-    color: 0xff9966,
-    intensity: 4,
-    position: { x: -30, y: 25, z: -20 },
     shadow: {
       camera: {
         left: -40,
